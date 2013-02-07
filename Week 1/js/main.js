@@ -3,10 +3,10 @@
 //Troy Stevenson
 //main javascript
 
-//Wait intil the DOM is ready.
+//Wait until the DOM is ready.
 window.addEventListener("DOMContentLoaded", function () {
 	
-//getElementId Function. (I do not have an "Error" to display in my code.  (Save for future use.)
+//getElementId Function.
 	function $(x){
 		var theElement = document.getElementById(x);
 		return theElement;
@@ -28,16 +28,6 @@ window.addEventListener("DOMContentLoaded", function () {
 		}
 		selectLi.appendChild(makeSelect);
 	}		
-
-//value of range slider
-	function sliderValue (slideAmount){
-		var display = document.getElementById("reliable");
-		display.innerHTML = slideAmount;
-    }
-
-
-
-
 
 //Find the value of selected radio button.
 	function getSelectedRadio () {
@@ -83,7 +73,7 @@ window.addEventListener("DOMContentLoaded", function () {
 //Objext properties contain array with the form and input value.
 	 	getSelectedRadio();
 	 	var item                            = {};
-	 		item.group                      = ["Group:",       $("groups").value];
+	 		item.group                      = ["Group:",        $("groups").value];
 	 		item.fName                      = ["Firest Name:",  $("fName").value];
 	 		item.lName                      = ["Last Name:",    $("lName").value];
 	 		item.email                      = ["Email:",        $("email").value];
@@ -102,21 +92,21 @@ window.addEventListener("DOMContentLoaded", function () {
         
     function getData () {
 	 	toggleControls("on");
-	 	if(localStorage.length === 0){
-		 	alert("There is no data in local storage sucka!  Default info was added!"); 
+	 	if(localStorage.length === 0)
+		 	alert("There is no data in local storage!"); 
 		 	autoFillData();
 		 
-	 }
+		 
 //Write Data from local storage to the browser.
-	 	var makeDiv = document.createElement("div");
+ 	var makeDiv = document.createElement("div");
 	 	makeDiv.setAttribute("id", "items");
 	 	var makeList = document.createElement("ul");
 	 	makeDiv.appendChild(makeList);
 	 	document.body.appendChild(makeDiv);
 	 	$("items").style.display = "block";
-	 	for(var i=0, j=localStorage.length; i<j; i++){
+	 	for(var i=0, j=localStorage.length; i<j; i++);
 		 	var makeli = document.createElement("li");
-   		 	var linksLi = document.createElement("li");
+ 		 	var linksLi = document.createElement("li");
 		 	makeList.appendChild(makeli);
 		 	var key = localStorage.key(i);
 		 	var value = localStorage.getItem(key);
@@ -134,12 +124,11 @@ window.addEventListener("DOMContentLoaded", function () {
 		 	}
 		 	makeItemLinks(localStorage.key(i), linksLi); //Create our edit and delete buttons/Link for each item in local storage.
 	 	}
-	}
- 	
+	 	
 //get the image for the right job
- 	function getImage(jobName, makeSubList){
+ 	function getImag (jobName, makeSubList) {
 	 	var imageLi = document.createElement("li");
-	 	makeSubList.appendChild(imageLi);
+//	 	makeSubList.appendChild(imageLi);
 	 	var newImg = document.createElement("img");
 	 	var setSrc = newImg.setAttribute("src", "imgages/"+ jobName + ".png");
 	 	imageLi.appendChild(newImg);	 	
@@ -184,11 +173,9 @@ window.addEventListener("DOMContentLoaded", function () {
 //Grab the data from our item from local storage.
 		var value = localStorage.getItem(this.key);
 		var item = JSON.parse(value);
-		
-//Show form
+		//Show form
 		toggleControls ("off");
-		
-//populat the form foelds this the current localstorage values
+		//populat the form foelds this the current localstorage values
 		$("groups").value                 = item.group[1];
 		$("fName").value                  = item.fName[1];
 		$("lName").value                  = item.lName[1];
@@ -204,7 +191,7 @@ window.addEventListener("DOMContentLoaded", function () {
 		}
 		$("reliable").value               = item.reliable[1];
 		$("notes").value                  = item.notes[1];
-	}	
+			
 //REmove the initial listener from the input "save contact' button
 		save.removeEventListener("click", storeData);
 //Change Submit button value to Edit Button
@@ -214,7 +201,7 @@ window.addEventListener("DOMContentLoaded", function () {
 //so I can use that value when I save
 		editSubmit.addEventListener("click", validate);
 		editSubmit.key = this.key;		
-			
+	}			
 	
 	function deleteItem(){
 		var ask = confirm("Are you sure you want to delete this contact?");
@@ -260,20 +247,20 @@ window.addEventListener("DOMContentLoaded", function () {
 		 	getGroup.style.border = "1px solid red";
 		 	messageAry.push(groupError);
 	 	}
-	 }
+	 
 //first name valitation
 	 	if(getFname.value === ""){
 		 	var fNameError = "Please enter a first name.";
 		 	getFname.style.border        = "1px solid red";
 		 	messageAry.push(fNameError);
-	}
+		 }
 	 	
 //last name validation
 	 	if(getLname.value === ""){
 		 	var lNameError = "Please enter a last name.";
 		 	getLname.style.border = "1px solid red";
 		 	messageAry.push(LnameError);
-	}
+		 }
 	 	
 //email valitation
 	 	var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -281,7 +268,7 @@ window.addEventListener("DOMContentLoaded", function () {
 	 		var emailError = "Please enter a valid Email Address";
 		 	getEmail.style.border = "1px solid red";
 		 	messageAry.push(emailError);
-	}
+		 }
 		 
 //if there were errors, display then on the screen
 		if(messageAry.length >= 1){
@@ -299,24 +286,20 @@ window.addEventListener("DOMContentLoaded", function () {
 			storeData (this.key);
 		} 
 	
- 	
+ 	}
 //Variable defaults
  	var jobGroups = ["--Choose A Group--", "GSR", "Housekeeper", "Maintenance"],
  		timeValue,
  		errMsg = $("errors");
  	makeJobs();
- 	timeValue();
- 	sliderValue();
- 	deleteItem();
- 	clearLocal ()
- 	
+ 	getImag();
 
 //Set Link & Submit Click Events
- 	var displayLink = $("showLink");
+ 	var displayLink = $("displayLink");
  	displayLink.addEventListener("click", getData);
  	var clear = $("clear");
  	clear.addEventListener("click", clearLocal);
- 	var save = $("submit");
+ 	var save = $("save");
 	save.addEventListener("click", validate);
 	var add = $("addNew");
 	add.addEventListener("click", addNew);
