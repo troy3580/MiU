@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", function () {
 			makeSelect.appendChild(makeOption);
 		
 		}
-		selectLi.appendChild(makeSelect);
+//		selectLi.appendChild(makeSelect);
 	}		
 
 //Find the value of selected radio button.
@@ -43,7 +43,7 @@ window.addEventListener("DOMContentLoaded", function () {
 	function toggleControls (n) {
 	 	switch(n) {
 		 	case "on":
-		 		$("contactForm").style.display = "none";
+		 		$("employeeForm").style.display = "none";
 		 		$("clear").style.display       = "inline";
 		 		$("displayLink").style.display = "none";
 		 		$("addNew").style.display      = "inline";
@@ -92,10 +92,10 @@ window.addEventListener("DOMContentLoaded", function () {
         
     function getData () {
 	 	toggleControls("on");
-	 	if(localStorage.length === 0)
+	 	if(localStorage.length === 0){
 		 	alert("There is no data in local storage!"); 
 		 	autoFillData();
-		 
+		 };
 		 
 //Write Data from local storage to the browser.
  	var makeDiv = document.createElement("div");
@@ -126,9 +126,9 @@ window.addEventListener("DOMContentLoaded", function () {
 	 	}
 	 	
 //get the image for the right job
- 	function getImag (jobName, makeSubList) {
+ 	function getImage (jobName, makeSubList) {
 	 	var imageLi = document.createElement("li");
-//	 	makeSubList.appendChild(imageLi);
+	 	makeSubList.appendChild(imageLi);
 	 	var newImg = document.createElement("img");
 	 	var setSrc = newImg.setAttribute("src", "imgages/"+ jobName + ".png");
 	 	imageLi.appendChild(newImg);	 	
@@ -259,7 +259,7 @@ window.addEventListener("DOMContentLoaded", function () {
 	 	if(getLname.value === ""){
 		 	var lNameError = "Please enter a last name.";
 		 	getLname.style.border = "1px solid red";
-		 	messageAry.push(LnameError);
+		 	messageAry.push(lNameError);
 		 }
 	 	
 //email valitation
@@ -288,11 +288,11 @@ window.addEventListener("DOMContentLoaded", function () {
 	
  	}
 //Variable defaults
- 	var jobGroups = ["--Choose A Group--", "GSR", "Housekeeper", "Maintenance"],
+ 	var jobGroups = ["--Choose A Job--", "GSR", "Housekeeper", "Maintenance"],
  		timeValue,
  		errMsg = $("errors");
- 	makeJobs();
- 	getImag();
+// 	makeJobs();
+// 	getImage();
 
 //Set Link & Submit Click Events
  	var displayLink = $("displayLink");
