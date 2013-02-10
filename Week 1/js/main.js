@@ -130,7 +130,7 @@ window.addEventListener("DOMContentLoaded", function () {
 	 	var imageLi = document.createElement("li");
 	 	makeSubList.appendChild(imageLi);
 	 	var newImg = document.createElement("img");
-	 	var setSrc = newImg.setAttribute("src", "imgages/"+ jobName + ".png");
+	 	var setSrc = newImg.setAttribute("src", "images/"+ jobName + ".png");
 	 	imageLi.appendChild(newImg);	 	
  	}
 
