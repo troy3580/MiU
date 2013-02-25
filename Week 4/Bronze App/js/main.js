@@ -286,6 +286,7 @@ storeData (this.key);
 //Variable defaults
 var jobGroups = ["--Choose A Job--", "GSR", "Housekeeper", "Maintenance"],
 timeValue,
+makeJobs (),
 errMsg = $("errors");
 
 //Set Link & Submit Click Events
